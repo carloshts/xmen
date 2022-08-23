@@ -2,13 +2,38 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Route, RouterModule } from '@angular/router';
+import { LoginModule } from './pages/login/login.module';
+import { CerebroModule } from './pages/cerebro/cerebro.module';
+import { MaterialModule } from './material/material.module';
 
+const routes: Route[]=[
+  {
+    path:'',
+    redirectTo:'login',
+    pathMatch:'full'
+  },
+  {
+    path:'login',
+    loadChildren: ()=> import('./pages/login/login.module').then(m=>m.LoginModule),
+  },
+  {
+    path:'cerebro',
+    loadChildren:()=>import('./pages/cerebro/cerebro.module').then(m=>m.CerebroModule)
+  }
+]
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    LoginModule,
+    CerebroModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
