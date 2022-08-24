@@ -1,1 +1,30 @@
-<p>login works!</p>
+<mat-grid-list cols="1" rowHeight="1:1">
+  <mat-grid-tile>
+    <mat-card>
+      <h2>Bem vindo</h2>
+      <hr/>
+      <form [formGroup]="loginFormGroup">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" type="text">
+          <mat-error *ngIf="loginFormGroup['controls']['nome'].errors">Campo obrigatório</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field  appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="senha" type="password"/>
+          <mat-error *ngIf="loginFormGroup['controls']['senha'].errors?.required">Campo obrigatório</mat-error>
+          <mat-error *ngIf="loginFormGroup['controls']['senha'].errors?.minlength">
+            Preencha com no mínimo {{loginFormGroup['controls']['senha'].errors?.minlength?.requiredLength}} caractéres.
+            {{loginFormGroup['controls']['senha'].errors?.minlength?.actualLength}}/{{loginFormGroup['controls']['senha'].errors?.minlength?.requiredLength}}
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <br>
+        <button mat-flat-button color="primary" type="button" (click)="entrar()">Cerebro</button>
+        <button mat-flat-button color="accent" type="button">Voltar</button>
+      </form>
+
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
