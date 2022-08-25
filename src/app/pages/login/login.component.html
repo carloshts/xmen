@@ -7,16 +7,16 @@
         <mat-form-field appearance="outline">
           <mat-label>Nome</mat-label>
           <input matInput formControlName="nome" type="text">
-          <mat-error *ngIf="loginFormGroup['controls']['nome'].errors">Campo obrigatório</mat-error>
+          <mat-error>
+            <app-mat-error [control]="loginFormGroup['controls']['nome']"></app-mat-error>
+          </mat-error>
         </mat-form-field>
         <br>
         <mat-form-field  appearance="outline">
           <mat-label>Senha</mat-label>
           <input matInput formControlName="senha" type="password"/>
-          <mat-error *ngIf="loginFormGroup['controls']['senha'].errors?.required">Campo obrigatório</mat-error>
-          <mat-error *ngIf="loginFormGroup['controls']['senha'].errors?.minlength">
-            Preencha com no mínimo {{loginFormGroup['controls']['senha'].errors?.minlength?.requiredLength}} caractéres.
-            {{loginFormGroup['controls']['senha'].errors?.minlength?.actualLength}}/{{loginFormGroup['controls']['senha'].errors?.minlength?.requiredLength}}
+          <mat-error>
+            <app-mat-error [control]="loginFormGroup['controls']['senha']"></app-mat-error>
           </mat-error>
         </mat-form-field>
         <br>

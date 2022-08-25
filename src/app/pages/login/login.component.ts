@@ -12,21 +12,22 @@ export class LoginComponent implements OnInit {
     value: 'PROF X',
     disabled:false
   },[Validators.required]);
-  public loginFormGroup:FormGroup = this.formBuilder.group(
-    {
-      nome: new FormControl({
-        value: 'PROF X',
-        disabled:false
-      },[Validators.required]),
-      senha:new FormControl('',[Validators.required,Validators.minLength(3)])
-    });
-
+  public loginFormGroup!: FormGroup;
   constructor(
     private formBuilder:FormBuilder,
     private router:Router
     ) { }
 
   ngOnInit(): void {
+    this.loginFormGroup = this.formBuilder.group(
+      {
+        nome: new FormControl({
+          value: 'PROF X',
+          disabled:false
+        },[Validators.required]),
+        senha:new FormControl('',[Validators.required,Validators.minLength(3)])
+      });
+
   }
   entrar(){
     console.log(this.loginFormGroup['controls']['senha'])

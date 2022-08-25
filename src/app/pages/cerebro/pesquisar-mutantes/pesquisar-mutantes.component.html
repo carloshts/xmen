@@ -4,10 +4,12 @@
     <mat-card>
       <h2>Pesquisar mutantes</h2>
       <form>
-        <mat-form-field  appearance="fill">
+        <mat-form-field  appearance="outline">
           <mat-label>Nome</mat-label>
-          <input matInput type="text"/>
-
+          <input matInput [formControl]="nome" type="text"/>
+          <mat-error>
+            <app-mat-error [control]="nome" [legendas]="[{error:'required',legendaErro:'Preencha um nome'}]"></app-mat-error>
+          </mat-error>
         </mat-form-field>
         <br>
         <button mat-flat-button color="primary" type="button">Pesquisar</button>

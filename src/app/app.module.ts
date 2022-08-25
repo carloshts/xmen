@@ -7,6 +7,7 @@ import { Route, RouterModule } from '@angular/router';
 import { LoginModule } from './pages/login/login.module';
 import { CerebroModule } from './pages/cerebro/cerebro.module';
 import { MaterialModule } from './material/material.module';
+import { MatErrorModule } from './commons/mat-error/mat-error.module';
 
 const routes: Route[]=[
   {
@@ -33,7 +34,8 @@ const routes: Route[]=[
     RouterModule.forRoot(routes),
     LoginModule,
     CerebroModule,
-    MaterialModule
+    MaterialModule,
+    MatErrorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
