@@ -1,5 +1,5 @@
 
-<mat-grid-list cols="1" rowHeight="2:1">
+<mat-grid-list cols="1" rowHeight="1:1">
   <mat-grid-tile>
     <mat-card>
       <h2>Pesquisar mutantes</h2>
@@ -20,12 +20,28 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile >
-    <!-- <table mat-table [dataSource]="dataSource">
-      <ng-container>
-
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="ordernarDados($event)" style="width: 100%;">
+      <ng-container matColumnDef="name" >
+        <th mat-header-cell mat-sort-header *matHeaderCellDef style="width: 20%;">Nome</th>
+        <td mat-cell *matCellDef="let mutante" style="width: 20%;">{{mutante.name}}</td>
       </ng-container>
-    </table> -->
-    <table>
+      <ng-container matColumnDef="alias">
+        <th mat-header-cell *matHeaderCellDef style="width: 50%;">Nome de herói</th>
+        <td mat-cell *matCellDef="let mutante" style="width: 50%;">{{mutante.alias}}</td>
+      </ng-container>
+      <ng-container matColumnDef="affiliation">
+        <th mat-header-cell *matHeaderCellDef style="width: 30%;">Grupo</th>
+        <td mat-cell *matCellDef="let mutante" style="width: 30%;">{{mutante.affiliation}}</td>
+      </ng-container>
+      <tr *matNoDataRow>
+        <td colspan="3">Nenhum mutante encontrado</td>
+      </tr>
+      <tr mat-header-row *matHeaderRowDef="collumnsXmen"></tr>
+      <tr mat-row *matRowDef="let row; columns :collumnsXmen"></tr>
+    </table>
+
+    <br><br>
+    <!-- <table>
       <tr>
         <th>Nome</th>
         <th>Poder</th>
@@ -35,6 +51,7 @@
         <td>{{mutante.nome}}</td>
         <td>{{mutante.poder}}</td>
       </tr>
-    </table>
+    </table> -->
+
   </mat-grid-tile>
 </mat-grid-list>

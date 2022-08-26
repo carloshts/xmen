@@ -1,6 +1,8 @@
 import { XmenApiService } from './../../../commons/services/xmenapi.service';
 import { FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-pesquisar-mutantes',
@@ -8,25 +10,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pesquisar-mutantes.component.css']
 })
 export class PesquisarMutantesComponent implements OnInit {
+  @ViewChild(MatSort) ordenador!:MatSort;
+  public nome:FormControl = new FormControl('');
+  public dataSource = new MatTableDataSource([])
+  public collumnsXmen: string[] = ['name','alias','affiliation']
 
   constructor(
     private xmenApiService:XmenApiService
   ) { }
 
-  public nome:FormControl = new FormControl('',[Validators.required]);
-  public dataSource = [
-    {nome:'PROF X',poder:'Telepatia'},
-    {nome:'Logan',poder:'Fator de cura'}
-  ]
-
   ngOnInit(): void {
+    this.dataSource.sort = this.ordenador;
   }
   pesquisarMutantes(){
-    this.xmenApiService.getCharacters()
+    this.xmenApiService.getCharacters(this.nome.value)
     .subscribe(
       (response)=>{
         console.log(response)
+        this.dataSource.data = response.results
       }
     )
+  }
+  ordernarDados(sortState: Sort) {
+    if (sortState.direction) {
+      console.log(`Sorted ${sortState.direction}`);
+      if(sortState.direction=='asc')
+        this.dataSource.data = this.dataSource.data.sort();
+      else if(sortState.direction=='desc')
+        this.dataSource.data = this.dataSource.data.reverse();
+    } else {
+      console.log('Sorting cleared');
+    }
   }
 }

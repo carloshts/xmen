@@ -1,5 +1,5 @@
 import { environment } from './../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,12 @@ export class XmenApiService {
     private http:HttpClient
   ) { }
 
-  getCharacters():Observable<any>{
-    return this.http.get<any>(`${environment.apiXmenURL}/characters`);
+  getCharacters(name?:string):Observable<any>{
+    let query:HttpParams = new HttpParams();
+    if(name) query = query.append('name',name as string);
+    return this.http.get<any>(`${environment.apiXmenURL}/characters`,{params:query});
+  }
+  getCharactersByName(name:string):Observable<any>{
+    return this.http.get<any>(`${environment.apiXmenURL}/characters?name=${name}`);
   }
 }
