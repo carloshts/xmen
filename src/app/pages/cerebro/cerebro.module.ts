@@ -6,6 +6,7 @@ import { PesquisarMutantesComponent } from './pesquisar-mutantes/pesquisar-mutan
 import { MaterialModule } from 'src/app/material/material.module';
 import { InimigosComponent } from './inimigos/inimigos.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MutanteComponent } from './pesquisar-mutantes/mutante/mutante.component';
 const routes:Route[] = [
   {
     path:'',
@@ -19,7 +20,8 @@ const routes:Route[] = [
 @NgModule({
   declarations: [
     PesquisarMutantesComponent,
-    InimigosComponent
+    InimigosComponent,
+    MutanteComponent
   ],
   imports: [
     CommonModule,
