@@ -1,5 +1,6 @@
 import { MatErrorModule } from './../../commons/mat-error/mat-error.module';
 import { Route, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PesquisarMutantesComponent } from './pesquisar-mutantes/pesquisar-mutantes.component';
@@ -29,7 +30,8 @@ const routes:Route[] = [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    MatErrorModule
+    MatErrorModule,
+    HttpClientModule
   ]
 })
 export class CerebroModule { }

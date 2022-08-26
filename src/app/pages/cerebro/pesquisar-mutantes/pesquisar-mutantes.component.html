@@ -12,14 +12,29 @@
           </mat-error>
         </mat-form-field>
         <br>
-        <button mat-flat-button color="primary" type="button">Pesquisar</button>
+        <button mat-flat-button color="primary" (click)="pesquisarMutantes()" type="button">Pesquisar</button>
         <button mat-flat-button color="primary" routerLink="/inimigos" type="button">Inimigos</button>
         <button mat-flat-button color="accent" type="button" routerLink="/login">Voltar</button>
       </form>
 
     </mat-card>
   </mat-grid-tile>
-  <mat-grid-tile style="background-color: #cecece;">
-    <app-mutante [nomeRecebido]="nome.value"></app-mutante>
+  <mat-grid-tile >
+    <!-- <table mat-table [dataSource]="dataSource">
+      <ng-container>
+
+      </ng-container>
+    </table> -->
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Poder</th>
+      </tr>
+
+      <tr *ngFor="let mutante of dataSource">
+        <td>{{mutante.nome}}</td>
+        <td>{{mutante.poder}}</td>
+      </tr>
+    </table>
   </mat-grid-tile>
 </mat-grid-list>
