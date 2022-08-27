@@ -1,10 +1,9 @@
-
-<mat-grid-list cols="1" rowHeight="1:1">
-  <mat-grid-tile>
-    <mat-card>
+<div class="row">
+  <div class="col-12" style="padding: 15px;padding-left: 30px;">
+    <mat-card >
       <h2>Pesquisar mutantes</h2>
       <form>
-        <mat-form-field  appearance="outline">
+        <mat-form-field  appearance="outline" style="width: 100%;">
           <mat-label>Nome</mat-label>
           <input matInput [formControl]="nome" type="text"/>
           <mat-error>
@@ -12,14 +11,21 @@
           </mat-error>
         </mat-form-field>
         <br>
-        <button mat-flat-button color="primary" (click)="pesquisarMutantes()" type="button">Pesquisar</button>
-        <button mat-flat-button color="primary" routerLink="/inimigos" type="button">Inimigos</button>
+        <div class="row">
+          <div class="col" style="display: grid;grid-auto-flow: column;grid-column-gap: 10px">
+            <button mat-flat-button color="primary" (click)="pesquisarMutantes()" type="button">Pesquisar</button>
+
+            <button mat-flat-button color="primary" routerLink="/inimigos" type="button">Inimigos</button>
+
         <button mat-flat-button color="accent" type="button" routerLink="/login">Voltar</button>
+
+          </div>
+        </div>
       </form>
 
     </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile >
+  </div>
+  <div class="col-12">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="ordernarDados($event)" style="width: 100%;">
       <ng-container matColumnDef="name" >
         <th mat-header-cell mat-sort-header *matHeaderCellDef style="width: 20%;">Nome</th>
@@ -52,6 +58,8 @@
         <td>{{mutante.poder}}</td>
       </tr>
     </table> -->
+  </div>
+</div>
 
-  </mat-grid-tile>
-</mat-grid-list>
+
+
