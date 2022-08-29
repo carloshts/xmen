@@ -12,9 +12,11 @@ export class XmenApiService {
     private http:HttpClient
   ) { }
 
-  getCharacters(name?:string):Observable<any>{
+  getCharacters(name?:string,pageIndex?:number,pageLimit?:number):Observable<any>{
     let query:HttpParams = new HttpParams();
     if(name) query = query.append('name',name as string);
+    if(pageIndex) query = query.append('page',pageIndex);
+    if(pageLimit) query = query.append('limit',pageLimit);
     return this.http.get<any>(`${environment.apiXmenURL}/characters`,{params:query});
   }
   getCharactersByName(name:string):Observable<any>{
