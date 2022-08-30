@@ -22,4 +22,13 @@ export class XmenApiService {
   getCharactersByName(name:string):Observable<any>{
     return this.http.get<any>(`${environment.apiXmenURL}/characters?name=${name}`);
   }
+  getCharacterById(id:number):Observable<any>{
+    return this.http.get<any>(`${environment.apiXmenURL}/characters/${id}`)
+  }
+  getEpisodes(number?:string,pageIndex?:number):Observable<any>{
+    let query:HttpParams = new HttpParams();
+    if(number) query = query.append('number',number as string)
+    if(pageIndex) query = query.append('page',pageIndex)
+    return this.http.get<any>(`${environment.apiXmenURL}/episodes`,{params:query})
+  }
 }

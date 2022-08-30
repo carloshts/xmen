@@ -16,7 +16,7 @@
             <button mat-flat-button color="primary" (click)="pesquisarMutantes()" type="button">Pesquisar</button>
 
             <button mat-flat-button color="primary" routerLink="/inimigos" type="button">Inimigos</button>
-
+            <button mat-flat-button color="accent" routerLink="/episodios" type="button">Episodios</button>
         <button mat-flat-button color="accent" type="button" routerLink="/login">Voltar</button>
 
           </div>
@@ -44,7 +44,7 @@
         <td colspan="3">Nenhum mutante encontrado</td>
       </tr>
       <tr mat-header-row *matHeaderRowDef="collumnsXmen"></tr>
-      <tr mat-row *matRowDef="let row; columns :collumnsXmen"></tr>
+      <tr mat-row (click)="mostrarMutante(mutante)" *matRowDef="let mutante; columns :collumnsXmen"></tr>
     </table>
 
     <br><br>

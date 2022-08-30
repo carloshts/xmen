@@ -1,14 +1,16 @@
+import { MutanteComponent } from './mutante/mutante.component';
 import { XmenApiService } from './../../../commons/services/xmenApi.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pesquisar-mutantes',
   templateUrl: './pesquisar-mutantes.component.html',
-  styleUrls: ['./pesquisar-mutantes.component.css']
+  styleUrls: ['./pesquisar-mutantes.component.scss']
 })
 export class PesquisarMutantesComponent implements OnInit {
   @ViewChild(MatSort) ordenador!:MatSort;
@@ -18,7 +20,8 @@ export class PesquisarMutantesComponent implements OnInit {
   public collumnsXmen: string[] = ['name','alias','affiliation']
   public total = 0;
   constructor(
-    private xmenApiService:XmenApiService
+    private xmenApiService:XmenApiService,
+    private dialog:MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -45,5 +48,7 @@ export class PesquisarMutantesComponent implements OnInit {
       }
     )
   }
-
+  mostrarMutante(mutante:any){
+    this.dialog.open(MutanteComponent,{height:'500px',width:'300px',data:mutante})
+  }
 }
