@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiXmenURL:'http://xmenapiheroku.herokuapp.com/api'
+  apiXmenURL:'http://xmenapiheroku.herokuapp.com/api',
+  apiUser:'https://nestjs-estudos.vercel.app/'
 };
 
 /*

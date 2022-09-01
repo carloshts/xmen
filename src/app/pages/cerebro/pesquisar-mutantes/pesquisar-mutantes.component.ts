@@ -49,6 +49,6 @@ export class PesquisarMutantesComponent implements OnInit {
     )
   }
   mostrarMutante(mutante:any){
-    this.dialog.open(MutanteComponent,{height:'500px',width:'300px',data:mutante})
+    this.dialog.open(MutanteComponent,{height:'50%',width:'50%',data:mutante})
   }
 }

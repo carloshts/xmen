@@ -9,6 +9,7 @@ import { InimigosComponent } from './inimigos/inimigos.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MutanteComponent } from './pesquisar-mutantes/mutante/mutante.component';
 import { PesquisarEpisodiosComponent } from './pesquisar-episodios/pesquisar-episodios.component';
+import { EpisodioComponent } from './pesquisar-episodios/episodio/episodio.component';
 const routes:Route[] = [
   {
     path:'',
@@ -28,7 +29,8 @@ const routes:Route[] = [
     PesquisarMutantesComponent,
     InimigosComponent,
     MutanteComponent,
-    PesquisarEpisodiosComponent
+    PesquisarEpisodiosComponent,
+    EpisodioComponent
   ],
   imports: [
     CommonModule,

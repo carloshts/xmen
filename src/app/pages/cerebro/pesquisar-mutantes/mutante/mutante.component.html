@@ -1,8 +1,22 @@
-<mat-card>
-  <mat-card-header>
-    <h2>{{nome}}</h2>
-  </mat-card-header>
-  <mat-card-content>
-    Esse mutante é top!
-  </mat-card-content>
-</mat-card>
+<div class="transparent">
+  <div class="row">
+    <div class="col"><h2>{{mutante.alias}}</h2></div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <img [src]="mutante.img" style="width:auto;max-width:100%">
+    </div>
+    <div class="col-8">
+      <h3>{{mutante.name}}</h3>
+      <p>
+        {{mutante.description}}
+      </p>
+      <div class="row">
+        <div class="col">{{mutante.powers}}</div>
+        <div class="col">{{mutante.affiliation}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

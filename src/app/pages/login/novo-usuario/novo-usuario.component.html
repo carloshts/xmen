@@ -1,0 +1,34 @@
+<div class="row justify-content-center">
+  <div class="col-6">
+    <h2>Cadastrar novo usuário</h2>
+    <form [formGroup]="formCadastro">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" style="width:100%">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" type="text">
+            <mat-error>
+              <app-mat-error [control]="formCadastro.controls['nome']"></app-mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" style="width:100%">
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="senha" type="password">
+            <mat-error>
+              <app-mat-error [control]="formCadastro.controls['senha']"></app-mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button mat-raised-button color="primary" type="button">Salvar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { MutantModel } from './../../../../commons/models/mutant';
 import { XmenApiService } from './../../../../commons/services/xmenApi.service';
 import { Component, OnInit, Input, SimpleChanges, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -5,13 +6,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-mutante',
   templateUrl: './mutante.component.html',
-  styleUrls: ['./mutante.component.css']
+  styleUrls: ['./mutante.component.scss'],
 })
 export class MutanteComponent implements OnInit {
 
   constructor(
     private xmenApiService:XmenApiService,
-    @Inject(MAT_DIALOG_DATA) public mutante:any
+    @Inject(MAT_DIALOG_DATA) public mutante:MutantModel
   ) { }
   @Input() nomeRecebido!:string;
   id:number = 3
