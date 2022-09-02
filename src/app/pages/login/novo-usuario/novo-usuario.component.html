@@ -26,7 +26,8 @@
       </div>
       <div class="row">
         <div class="col">
-          <button mat-raised-button color="primary" type="button">Salvar</button>
+          <button mat-raised-button color="primary" (click)="cadastrar()" type="button">Salvar</button>
+          <button mat-raised-button color="accent" routerLink="/login" type="button">Voltar</button>
         </div>
       </div>
     </form>

@@ -1,3 +1,4 @@
+import { UserModel } from './../../commons/models/user';
 import { UserService } from './../../commons/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -24,10 +25,11 @@ export class LoginComponent implements OnInit {
     this.loginFormGroup = this.formBuilder.group(
       {
         nome: new FormControl({
-          value: 'PROF X',
+          value: '',
           disabled:false
         },[Validators.required]),
-        senha:new FormControl('',[Validators.required,Validators.minLength(3)])
+        senhas:new FormControl('',[Validators.required,Validators.minLength(3)]),
+        senha: new FormControl('')
       });
 
   }
@@ -38,11 +40,21 @@ export class LoginComponent implements OnInit {
       console.log('Segue para Cerebro')
       this.userService.getUsers()
       .subscribe(
-        (response)=>{
-          console.log(response)
+        (usuarios:UserModel[])=>{
+          console.log(usuarios)
+          let permitir:boolean = usuarios.some((usuario:UserModel)=>usuario.nome == this.loginFormGroup.get('nome')?.value)
+          if(permitir){
+            let usuarioRecuperado:UserModel[] = usuarios.filter((usuario:UserModel)=>usuario.nome == this.loginFormGroup.get('nome')?.value)
+
+            this.loginFormGroup.patchValue(usuarioRecuperado[0])
+            this.loginFormGroup.get('senhas')?.setValue(usuarioRecuperado[0].senha)
+            this.router.navigateByUrl('/cerebro')
+          } else {
+            alert('Usuário não encontrado!')
+          }
         }
       )
-      // this.router.navigateByUrl('/cerebro')
+      //
     }else{
       console.log('Campos invalidos')
       this.loginFormGroup.markAllAsTouched();

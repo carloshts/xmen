@@ -47,7 +47,7 @@
         <td colspan="3">Nenhum mutante encontrado</td>
       </tr>
       <tr mat-header-row *matHeaderRowDef="colunas"></tr>
-      <tr mat-row *matRowDef="let row; columns :colunas"></tr>
+      <tr mat-row (click)="abrirEpisodio(episodio)" *matRowDef="let episodio; columns :colunas"></tr>
     </table>
     <mat-paginator pageSize="20" (page)="mudarPagina($event)" [length]="total" style="width: 90%;margin:0 auto"></mat-paginator>
   </div>

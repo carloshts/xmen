@@ -1,3 +1,5 @@
+import { UserService } from './../../../commons/services/user.service';
+import { UserModel } from './../../../commons/models/user';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class NovoUsuarioComponent implements OnInit {
 
   constructor(
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private userService:UserService
   ) { }
   public formCadastro!:FormGroup
   ngOnInit(): void {
@@ -17,6 +20,23 @@ export class NovoUsuarioComponent implements OnInit {
       nome: new FormControl("",[Validators.required]),
       senha: new FormControl("",[Validators.required,Validators.minLength(3)])
     })
+  }
+  cadastrar(){
+    this.formCadastro.updateValueAndValidity();
+    if(this.formCadastro.valid){
+      const user:UserModel = {
+        nome:this.formCadastro.get('nome')?.value,
+        senha:this.formCadastro.get('senha')?.value
+      }
+      this.userService.createUser(user)
+      .subscribe(
+        (usuarioCriado:UserModel)=>{
+          alert(usuarioCriado._id)
+        }
+      )
+    }else{
+      this.formCadastro.markAllAsTouched();
+    }
   }
 
 }

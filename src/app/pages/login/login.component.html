@@ -13,8 +13,15 @@
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Senhas</mat-label>
+          <input matInput formControlName="senhas" type="text"/>
+          <mat-error>
+            <app-mat-error [control]="loginFormGroup['controls']['senha']"></app-mat-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%;">
           <mat-label>Senha</mat-label>
-          <input matInput formControlName="senha" type="password"/>
+          <input matInput formControlName="senha" type="text"/>
           <mat-error>
             <app-mat-error [control]="loginFormGroup['controls']['senha']"></app-mat-error>
           </mat-error>

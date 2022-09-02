@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-episodio',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EpisodioComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(
+     @Inject(MAT_DIALOG_DATA) public data:any
+  ) { }
+    public episodio:any;
   ngOnInit(): void {
+    this.episodio = this.data
   }
 
 }

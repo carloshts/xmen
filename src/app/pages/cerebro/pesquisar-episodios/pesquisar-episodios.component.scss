@@ -1,0 +1,6 @@
+@import "src/custom-theme.scss";
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+  cursor: pointer;
+  background-color: $primary
+}
