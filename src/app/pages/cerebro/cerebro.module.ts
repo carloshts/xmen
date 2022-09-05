@@ -1,3 +1,4 @@
+import { CommonsModule } from './../../commons/commons.module';
 import { MatErrorModule } from './../../commons/mat-error/mat-error.module';
 import { Route, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
@@ -33,6 +34,7 @@ const routes:Route[] = [
     EpisodioComponent
   ],
   imports: [
+    CommonsModule,
     CommonModule,
     RouterModule.forChild(routes),
     MaterialModule,

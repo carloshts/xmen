@@ -28,33 +28,29 @@ export class LoginComponent implements OnInit {
           value: '',
           disabled:false
         },[Validators.required]),
-        senhas:new FormControl('',[Validators.required,Validators.minLength(3)]),
-        senha: new FormControl('')
+        senha: new FormControl('',[Validators.required,Validators.minLength(3)])
       });
 
   }
   entrar(){
-    console.log(this.loginFormGroup['controls']['senha'])
     //Validar os campos de login e seguir para Cerebro
     if(this.loginFormGroup.valid){
       console.log('Segue para Cerebro')
-      this.userService.getUsers()
+      const user:UserModel = this.loginFormGroup.getRawValue();
+      this.userService.getLogin(user.nome, user.senha)
       .subscribe(
-        (usuarios:UserModel[])=>{
-          console.log(usuarios)
-          let permitir:boolean = usuarios.some((usuario:UserModel)=>usuario.nome == this.loginFormGroup.get('nome')?.value)
-          if(permitir){
-            let usuarioRecuperado:UserModel[] = usuarios.filter((usuario:UserModel)=>usuario.nome == this.loginFormGroup.get('nome')?.value)
-
-            this.loginFormGroup.patchValue(usuarioRecuperado[0])
-            this.loginFormGroup.get('senhas')?.setValue(usuarioRecuperado[0].senha)
+        (usuario:UserModel)=>{
+          console.log(usuario)
+          if(usuario){
+            localStorage.setItem('id',(user._id)?user._id:'')
+            localStorage.setItem('usuario',user.nome)
             this.router.navigateByUrl('/cerebro')
           } else {
             alert('Usuário não encontrado!')
+            localStorage.clear();
           }
         }
       )
-      //
     }else{
       console.log('Campos invalidos')
       this.loginFormGroup.markAllAsTouched();

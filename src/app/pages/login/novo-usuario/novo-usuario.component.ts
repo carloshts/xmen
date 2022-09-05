@@ -24,14 +24,16 @@ export class NovoUsuarioComponent implements OnInit {
   cadastrar(){
     this.formCadastro.updateValueAndValidity();
     if(this.formCadastro.valid){
-      const user:UserModel = {
-        nome:this.formCadastro.get('nome')?.value,
-        senha:this.formCadastro.get('senha')?.value
-      }
+      // const user:UserModel = {
+      //   nome:this.formCadastro.get('nome')?.value,
+      //   senha:this.formCadastro.get('senha')?.value
+      // }
+      const user:UserModel = this.formCadastro.getRawValue();
       this.userService.createUser(user)
       .subscribe(
         (usuarioCriado:UserModel)=>{
-          alert(usuarioCriado._id)
+          console.log(usuarioCriado)
+
         }
       )
     }else{
