@@ -28,7 +28,7 @@ export class UserService {
     return this.http.get<UserModel[]>(`${environment.apiUser}/user`);
   }
   getUser(id:string):Observable<UserModel>{
-    return this.http.get<UserModel>(`${environment.apiUser}/user/${id}`);
+    return this.http.get<UserModel>(`${environment.apiUser}/user/id/${id}`);
   }
   deleteUser(id:string):Observable<any>{
     return this.http.delete<any>(`${environment.apiUser}/user/${id}`);

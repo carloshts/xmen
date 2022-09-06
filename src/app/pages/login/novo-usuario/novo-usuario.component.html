@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-6">
-    <h2>Cadastrar novo usuário</h2>
+    <h2>{{titulo}} novo usuário</h2>
     <form [formGroup]="formCadastro">
       <div class="row">
         <div class="col">
@@ -26,7 +26,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <button mat-raised-button color="primary" (click)="cadastrar()" type="button">Salvar</button>
+          <button mat-raised-button color="primary" (click)="salvar()" type="button">Salvar</button>
           <button mat-raised-button color="accent" routerLink="/login" type="button">Voltar</button>
         </div>
       </div>

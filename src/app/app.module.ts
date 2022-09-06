@@ -25,10 +25,6 @@ const routes: Route[]=[
   {
     path:'cerebro',
     loadChildren:()=>import('./pages/cerebro/cerebro.module').then(m=>m.CerebroModule)
-  },
-  {
-    path:'commons',
-    loadChildren:()=>import('./commons/commons.module').then(m=>m.CommonsModule)
   }
 ]
 @NgModule({

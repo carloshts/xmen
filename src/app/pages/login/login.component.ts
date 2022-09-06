@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
         (usuario:UserModel)=>{
           console.log(usuario)
           if(usuario){
-            localStorage.setItem('id',(user._id)?user._id:'')
             localStorage.setItem('usuario',JSON.stringify(usuario))
             this.router.navigateByUrl('/cerebro')
           } else {
