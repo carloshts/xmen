@@ -10,6 +10,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [],
@@ -17,6 +18,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     CommonModule,
   ],
   exports:[
+    MatMenuModule,
     MatCardModule,
     MatGridListModule,
     MatInputModule,

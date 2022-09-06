@@ -1,0 +1,18 @@
+<div class="row justify-content-center">
+  <div class="col-6">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Perfil</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <b>Nome:</b><span> {{user.nome}}</span>
+        <br>
+        <b>Senha:</b><span> {{user.senha}}</span>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button color="accent" [routerLink]="'/login/editar-usuario/'+user._id"><mat-icon>edit</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

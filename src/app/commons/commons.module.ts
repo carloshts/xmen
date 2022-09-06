@@ -6,14 +6,10 @@ import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
-    MenuComponent
   ],
   imports: [
     CommonModule,
     MaterialModule
-  ],
-  exports:[
-    MenuComponent
   ]
 })
 export class CommonsModule { }

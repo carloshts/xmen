@@ -1,3 +1,5 @@
+import { MenuComponent } from './commons/components/menu/menu.component';
+import { CommonsModule } from './commons/commons.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -23,11 +25,16 @@ const routes: Route[]=[
   {
     path:'cerebro',
     loadChildren:()=>import('./pages/cerebro/cerebro.module').then(m=>m.CerebroModule)
+  },
+  {
+    path:'commons',
+    loadChildren:()=>import('./commons/commons.module').then(m=>m.CommonsModule)
   }
 ]
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
