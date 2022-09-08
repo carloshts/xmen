@@ -1,3 +1,4 @@
+import { Mensagem } from './../../../commons/interfaces/mensagem';
 import { Router } from '@angular/router';
 import { UserService } from './../../../commons/services/user.service';
 import { UserModel } from './../../../commons/models/user';
@@ -30,10 +31,22 @@ export class PerfilComponent implements OnInit {
 
   }
   deletarUsuario(){
-    //this.userService.deleteUser('')
+    const userAuth:UserModel =  JSON.parse(localStorage.getItem('usuario') as string)
+    if(userAuth._id){
+      this.userService.deleteUser(userAuth._id)
+      .subscribe(
+        (mensagem:Mensagem)=>{
+          console.log(mensagem.mensagem)
+          localStorage.clear()
+          this.router.navigateByUrl('login')
 
-    localStorage.clear()
-    this.router.navigateByUrl('login')
+        },
+        (error:Mensagem)=>{
+          console.log(error)
+          alert('Erro na requisição')
+        }
+      )
+    }
 
   }
 }

@@ -1,3 +1,4 @@
+import { Mensagem } from './../interfaces/mensagem';
 import { UserModel } from './../models/user';
 import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -30,7 +31,7 @@ export class UserService {
   getUser(id:string):Observable<UserModel>{
     return this.http.get<UserModel>(`${environment.apiUser}/user/id/${id}`);
   }
-  deleteUser(id:string):Observable<any>{
-    return this.http.delete<any>(`${environment.apiUser}/user/${id}`);
+  deleteUser(id:string):Observable<Mensagem>{
+    return this.http.delete<Mensagem>(`${environment.apiUser}/user/${id}`);
   }
 }

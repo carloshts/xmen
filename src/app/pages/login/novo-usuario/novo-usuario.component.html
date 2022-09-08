@@ -24,6 +24,39 @@
           </mat-form-field>
         </div>
       </div>
+      <div *ngFor="let contatoFormGroup of contatosForm;let c = index;">
+        <hr>
+        <div [formGroup]="contatoFormGroup">
+          <div class="row">
+            <div class="col-5">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>Tipo</mat-label>
+                <input matInput formControlName="tipo" type="text">
+                <mat-error>
+                  <app-mat-error [control]="contatoFormGroup['controls']['tipo']"></app-mat-error>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance="outline" style="width:100%">
+                <mat-label>Número</mat-label>
+                <input matInput formControlName="numero" type="text">
+                <mat-error>
+                  <app-mat-error [control]="contatoFormGroup['controls']['numero']"></app-mat-error>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-1">
+              <button mat-icon-button color="primary" (click)="rmContato(c)" type="button" ><mat-icon>delete</mat-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button mat-raised-button type="button" (click)="addContato()">Novo contato</button>
+        </div>
+      </div>
       <div class="row">
         <div class="col">
           <button mat-raised-button color="primary" (click)="salvar()" type="button">Salvar</button>

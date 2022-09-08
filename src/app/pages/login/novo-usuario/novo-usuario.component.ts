@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from './../../../commons/services/user.service';
 import { UserModel } from './../../../commons/models/user';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -19,6 +19,17 @@ export class NovoUsuarioComponent implements OnInit {
   public titulo:string = 'Cadastrar'
   private user:UserModel = new UserModel();
   public formCadastro!:FormGroup
+
+  get f(){
+    return this.formCadastro
+  }
+  get contatos(){
+    return this.f.controls.contatos as FormArray
+  }
+  get contatosForm(){
+    return this.contatos.controls as FormGroup[]
+  }
+
   ngOnInit():void {
     this.user._id = this.activatedRoute.snapshot.params.id
     this.titulo = (this.user._id)?'Editar':'Cadastrar'
@@ -26,9 +37,10 @@ export class NovoUsuarioComponent implements OnInit {
     this.formCadastro = this.formBuilder.group({
       _id: new FormControl(this.user._id),
       nome: new FormControl(this.user.nome,[Validators.required]),
-      senha: new FormControl(this.user.senha,[Validators.required,Validators.minLength(3)])
+      senha: new FormControl(this.user.senha,[Validators.required,Validators.minLength(3)]),
+      contatos: new FormArray([])
     })
-
+    this.addContato()
     console.log('user3',this.user)
 
   }
@@ -40,6 +52,18 @@ export class NovoUsuarioComponent implements OnInit {
     if(this.user._id)
     this.user = await this.userService.getUser(this.user._id)
       .toPromise();
+  }
+  addContato(){
+    this.contatos.push(
+      this.formBuilder.group({
+        tipo: new FormControl(''),
+        numero: new FormControl('')
+      })
+    )
+
+  }
+  rmContato(index:number){
+    this.contatos.removeAt(index)
   }
   salvar(){
     if(this.user._id){

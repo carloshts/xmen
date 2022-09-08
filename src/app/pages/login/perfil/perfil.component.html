@@ -10,7 +10,7 @@
         <b>Senha:</b><span> {{user.senha}}</span>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="deletarUsuario()"><mat-icon>delete</mat-icon></button>
         <button mat-icon-button color="accent" routerLink="/login/editar-usuario/{{user._id}}"><mat-icon>edit</mat-icon></button>
       </mat-card-actions>
     </mat-card>
