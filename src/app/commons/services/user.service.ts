@@ -23,7 +23,7 @@ export class UserService {
     let query:HttpParams = new HttpParams();
     query = query.append('nome',String(nome));
     query = query.append('senha',String(senha))
-    return this.http.get<UserModel>(`${environment.apiUser}/user/login`,{params:query});
+    return this.http.get<UserModel>(`${environment.apiJava}/user/login`,{params:query});
   }
   getUsers():Observable<UserModel[]>{
     return this.http.get<UserModel[]>(`${environment.apiUser}/user`);
@@ -33,5 +33,8 @@ export class UserService {
   }
   deleteUser(id:string):Observable<Mensagem>{
     return this.http.delete<Mensagem>(`${environment.apiUser}/user/${id}`);
+  }
+  teste():Observable<any>{
+    return this.http.get<any>(`${environment.apiJava}`)
   }
 }

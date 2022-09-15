@@ -7,6 +7,7 @@ import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AuthService } from 'src/app/commons/services/auth.service';
 
 const routes:Route[] = [
   {
@@ -39,6 +40,9 @@ const routes:Route[] = [
     FormsModule,
     ReactiveFormsModule,
     MatErrorModule
+  ],
+  providers:[AuthService],
+  exports:[
   ]
 })
 export class LoginModule { }

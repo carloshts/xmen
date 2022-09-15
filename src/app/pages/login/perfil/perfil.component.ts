@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/commons/services/auth.service';
 import { Mensagem } from './../../../commons/interfaces/mensagem';
 import { Router } from '@angular/router';
 import { UserService } from './../../../commons/services/user.service';
@@ -13,6 +14,7 @@ export class PerfilComponent implements OnInit {
 
   constructor(
     private userService:UserService,
+    private authService:AuthService,
     private router:Router,
   ) { }
   public user:UserModel = {
@@ -21,7 +23,7 @@ export class PerfilComponent implements OnInit {
   };
   ngOnInit(): void {
 
-    const userAuth:UserModel =  JSON.parse(localStorage.getItem('usuario') as string)
+    const userAuth:UserModel =  this.authService.userValue;
     if(userAuth._id){
       this.userService.getUser(userAuth._id)
       .subscribe((user:UserModel)=>{

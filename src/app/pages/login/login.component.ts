@@ -1,3 +1,4 @@
+import { AuthService } from './../../commons/services/auth.service';
 import { UserModel } from './../../commons/models/user';
 import { UserService } from './../../commons/services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder:FormBuilder,
     private router:Router,
-    private userService:UserService
+    private userService:UserService,
+    private authService:AuthService
     ) { }
 
   ngOnInit(): void {
@@ -32,24 +34,17 @@ export class LoginComponent implements OnInit {
       });
 
   }
-  entrar(){
+  async entrar(){
     //Validar os campos de login e seguir para Cerebro
     if(this.loginFormGroup.valid){
       console.log('Segue para Cerebro')
       const user:UserModel = this.loginFormGroup.getRawValue();
-      this.userService.getLogin(user.nome, user.senha)
-      .subscribe(
-        (usuario:UserModel)=>{
-          console.log(usuario)
-          if(usuario){
-            localStorage.setItem('usuario',JSON.stringify(usuario))
-            this.router.navigateByUrl('/cerebro')
-          } else {
-            alert('Usuário não encontrado!')
-            localStorage.clear();
-          }
-        }
-      )
+      let auth:boolean = await this.authService.login(user.nome,user.senha)
+      if(auth){
+        this.router.navigateByUrl('/cerebro');
+      }else{
+        alert('Usuário ou senha incorretos.')
+      }
     }else{
       console.log('Campos invalidos')
       this.loginFormGroup.markAllAsTouched();

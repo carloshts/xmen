@@ -1,6 +1,7 @@
+import { AuthService } from 'src/app/commons/services/auth.service';
 import { UserModel } from './../../models/user';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'xmen-menu',
@@ -11,16 +12,20 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private route:Router,
-  ) { }
-  public usuario:UserModel = {
-    nome:'',
-    senha:''
-  }
+    private authService:AuthService
+  ) {
+
+   }
+  @Input() public userAuth!:UserModel;
+
   ngOnInit(): void {
-    this.usuario = JSON.parse(localStorage.getItem('usuario') as string);
   }
+
+  ngOnChange(change:SimpleChange){
+  }
+
   logout(){
-    localStorage.clear();
+    this.authService.logout();
     this.route.navigateByUrl('/login')
   }
 }

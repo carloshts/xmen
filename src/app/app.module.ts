@@ -10,6 +10,7 @@ import { LoginModule } from './pages/login/login.module';
 import { CerebroModule } from './pages/cerebro/cerebro.module';
 import { MaterialModule } from './material/material.module';
 import { MatErrorModule } from './commons/mat-error/mat-error.module';
+import { AuthService } from './commons/services/auth.service';
 
 
 const routes: Route[]=[
